@@ -16,8 +16,11 @@ An AI assistant for Politecnico students that guides the development of critical
 - 📚 [View All My GPTs Collection](https://github.com/edoardoavenia/edoardo-avenia-gpt-collection)
 - 💡 [View Full Prompt](./PROMPT.md)
 
-## 📖 Documentation
-The complete prompt for this GPT is available in this repository:
+# Poliquiz API Documentation
+This repository uses the public Poliquiz API. You can find:
+
+- 🌐 API endpoint: [https://poliquiz.it/](https://poliquiz.it/)
+- 📄 API Schema: [View Schema](./poliquiz-openapi.yaml)
 
 ## 👨‍💻 Author & Links
 - Created by [Edoardo Avenia](https://github.com/edoardoavenia)
