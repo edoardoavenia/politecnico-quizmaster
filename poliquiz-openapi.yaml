@@ -1,0 +1,124 @@
+openapi: 3.1.0
+info:
+  title: PoliQuiz API
+  description: API to access information about PoliQuiz courses and quizzes.
+  version: 1.0.0
+  contact:
+    name: PoliQuiz Support
+    email: support@poliquiz.it
+  license:
+    name: Creative Commons Attribution 4.0 International License
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+  - url: https://api.poliquiz.it
+    description: Main API server
+paths:
+  /courses:
+    get:
+      tags:
+        - Courses
+      operationId: listCourses
+      summary: List all courses
+      responses:
+        "200":
+          description: An array of courses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: "Calculus 1"
+  /course/{course_id}:
+    get:
+      tags:
+        - Courses
+      operationId: getCourseMetaInfo
+      summary: Get metadata for a specific course
+      parameters:
+        - name: course_id
+          in: path
+          required: true
+          description: The ID of the course
+          schema:
+            type: integer
+            example: 2
+      responses:
+        "200":
+          description: Metadata for the course
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      total_quizzes:
+                        type: integer
+                        example: 123
+                      total_verified_quizzes:
+                        type: integer
+                        example: 45
+  /course/{course_id}/quizzes:
+    get:
+      tags:
+        - Quizzes
+      operationId: getCourseQuizzes
+      summary: Retrieve quizzes for a specific course
+      parameters:
+        - name: course_id
+          in: path
+          required: true
+          description: The ID of the course
+          schema:
+            type: integer
+            example: 2
+      responses:
+        "200":
+          description: A list of quizzes for the course
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 123
+                        course_id:
+                          type: integer
+                          example: 2
+                        question:
+                          type: string
+                          example: "Question for course 2"
+                        answers:
+                          type: array
+                          items:
+                            type: string
+                          example: 
+                            - "Answer 1"
+                            - "Answer 2"
+                            - "Answer 3"
+                        right_answer_index:
+                          type: integer
+                          example: 2
+                        explanation:
+                          type: string
+                          example: "Answer 2 is correct because I like it"
+                        verified:
+                          type: boolean
+                          example: true
